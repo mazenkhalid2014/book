@@ -32,7 +32,7 @@
                     <div class="form-group">
                       
                       <label for="train name:">train name:</label>
-                      <input type="text" class="form-control" placeholder="Enter train name" name="train_name" id="train_name" required>
+                      <input type="text" class="form-control" placeholder="Enter train name" name="name" id="train_name" required>
                     </div>
                     <label for="start_station">pickup:</label>
                     <select name="start_station" id="start_station" class="form-control" required>

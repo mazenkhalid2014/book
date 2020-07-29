@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\city;
 use App\train;
-use Dotenv\Validator;
-use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
 class admin extends Controller
@@ -31,13 +29,13 @@ class admin extends Controller
     public function create(Request $request)
     {
         $validator = $request->validate([
-            
-            'name'      => 'required|text',
-            'start_time'    => 'required|date',
+        
+            "name"     => 'required|string',
+            'start_time'    => 'required|date|after:yesterday',
             'end_time'      => 'required|date|after:start_time',
             'capacity'      => 'required|int',
-            'price'      => 'required|int' ,
-            'start_station'    => 'required|different:end_station',
+               'price'      => 'required|int' ,
+          'start_station'    => 'required|different:end_station',
             'end_station'    => 'required|different:start_station'
           ],);
         
@@ -45,7 +43,7 @@ class admin extends Controller
     $reserve = new train();
     
    
-      $reserve->name=$request-> input("train_name");
+      $reserve->name=$request-> input("name");
       $reserve->start_station= $request-> input('start_station');
       $reserve->end_station =$request-> input('end_station');
       $reserve->start_time =$request-> input('start_time');
@@ -112,8 +110,10 @@ class admin extends Controller
      */
     public function destroy($id)
     { $city=city::all();
-        train::find($id)->delete();
+     
+        $train= train::find($id)->delete();
+
         $all =train::all();
-  return view("train\all")->with('a',$all)->with('city',$city);
+  return view("train\all")->with('a', $all)->with("city",$city);
     }
 }

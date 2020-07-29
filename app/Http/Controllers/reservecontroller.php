@@ -41,7 +41,7 @@ class reservecontroller extends Controller
         $validator = $request->validate([
               
             'name'      => 'required|text',
-            'start_time'    => 'required|date',
+            'start_time'    => 'required|date after:yesterday',
             'end_time'      => 'required|date|after:start_time',
             'capacity'      => 'required|int',
             'price'      => 'required|int' ,
@@ -75,7 +75,7 @@ class reservecontroller extends Controller
    
         train::where('id',$id)->update(['capacity'=>"$cap"]);
                 Mail::to($request->user()->email)->send(new mail1());
-        return view("train/created");
+                return view("train/created");
                 }
             }
 
@@ -98,7 +98,7 @@ class reservecontroller extends Controller
      */
     public function show(Request $request)
     {
-        $ldate = new Date('now');
+       
         $validator = $request->validate([
     
             'date'=> 'required|date|after:yesterday ',  
