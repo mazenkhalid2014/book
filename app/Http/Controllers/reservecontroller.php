@@ -11,8 +11,10 @@ use Mailgun\Mailgun;
 use Illuminate\Http\Request;
 use Illuminate\Mail\MailManager;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpKernel\Profiler\Profile;
+use Symfony\Component\VarDumper\Cloner\Data;
 
 class reservecontroller extends Controller
 {
@@ -36,7 +38,16 @@ class reservecontroller extends Controller
      */
     public function create($id,Request $request)
     {
-      
+        $validator = $request->validate([
+              
+            'name'      => 'required|text',
+            'start_time'    => 'required|date',
+            'end_time'      => 'required|date|after:start_time',
+            'capacity'      => 'required|int',
+            'price'      => 'required|int' ,
+            'start_station'    => 'required|different:end_station',
+            'end_station'    => 'required|different:start_station'
+        ],);
        $res=train::find($id);
        $train_id=$res->tr;
         $train_name=$res->name;
@@ -62,16 +73,11 @@ class reservecontroller extends Controller
       $reserve->price =$price;
       $reserve->save(); 
    
-  train::where('id',$id)->update(['capacity'=>"$cap"]);
-Mail::to($request->user()->email)->send(new mail1());
-return view("train/created");
-        }else{
-            
-            return view("train/failed"); 
-        }
-              
-
-    }
+        train::where('id',$id)->update(['capacity'=>"$cap"]);
+                Mail::to($request->user()->email)->send(new mail1());
+        return view("train/created");
+                }
+            }
 
     /**
      * Store a newly created resource in storage.
@@ -92,7 +98,13 @@ return view("train/created");
      */
     public function show(Request $request)
     {
-       
+        $ldate = new Date('now');
+        $validator = $request->validate([
+    
+            'date'=> 'required|date|after:yesterday ',  
+            'from'    => 'required|different:to',
+            'to'    => 'required|different:from'
+        ],);
         $from=$request->from;
         $to=$request->to;
         $date=$request->date;

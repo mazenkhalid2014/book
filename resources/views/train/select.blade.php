@@ -12,6 +12,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 @section('content')
 <div class="container">
+  
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

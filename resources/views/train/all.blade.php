@@ -17,16 +17,25 @@
         <div class="col-md-10">
             <div class="card">
                 <div class="card-header">{{ __('Reservation') }}</div>
+                                  @if ($errors->any())
+                      <div class="alert alert-danger">
+                          <ul>
+                              @foreach ($errors->all() as $error)
+                                  <li>{{ $error }}</li>
+                              @endforeach
+                          </ul>
+                      </div>
+                  @endif
                 <form action="/create">
                     <div class="container">
                         <div class="col-md-5">
                     <div class="form-group">
                       
                       <label for="train name:">train name:</label>
-                      <input type="text" class="form-control" placeholder="Enter train name" name="train_name" id="train_name">
+                      <input type="text" class="form-control" placeholder="Enter train name" name="train_name" id="train_name" required>
                     </div>
                     <label for="start_station">pickup:</label>
-                    <select name="start_station" id="start_station" class="form-control">
+                    <select name="start_station" id="start_station" class="form-control" required>
                      @foreach($city as $c)
                      <option>{{$c->city}}</option>
                      @endforeach            
@@ -34,7 +43,7 @@
 
                     <div class="container">
                    <label for="end_station">destnation:</label>
-                <select name="end_station" id="end_station" class="form-control">
+                <select name="end_station" id="end_station" class="form-control" required>
                       @foreach($city as $c)
                   <option>{{$c->city}}</option>
                   @endforeach                
@@ -45,20 +54,20 @@
                 <div class="col-md-5">
                       <div class="form-group">
                         <label for="start time">start time:</label>
-                        <input type="datetime-local" class="form-control" placeholder="Enter start time" name="start_time"id="start_time">
+                        <input type="datetime-local" class="form-control" placeholder="Enter start time" name="start_time"id="start_time" required>
                       </div>
                       <div class="form-group">
                         <label for="end time">end time:</label>
-                        <input type="datetime-local" class="form-control" placeholder="Enter end time" name="end_time" id="end_time">
+                        <input type="datetime-local" class="form-control" placeholder="Enter end time" name="end_time" id="end_time" required>
                       </div>
                       <div class="form-group">
                         <label for="price">price:</label>
-                        <input type="text" class="form-control" placeholder="price "name="price" id="price">
+                        <input type="text" class="form-control" placeholder="price "name="price" id="price" required>
                       </div>
                   
                       <div class="form-group">
                         <label for="capacity">capacity:</label>
-                        <input type="text" class="form-control" placeholder="capacity "name="capacity" id="capacity">
+                        <input type="text" class="form-control" placeholder="capacity "name="capacity" id="capacity" required>
                       </div>
                       
                     <button type="submit" class="btn btn-primary">create</button>
