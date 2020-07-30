@@ -51,7 +51,7 @@
                             </div>             
                             <div class="container">           
                         <label for="date">date:</label>
-                          <input type="datetime-local"  name="date" id="date" >
+                          <input type="date"  name="date" id="date" >
                          
                        
                         <button type="submit" class="btn btn-primary">search</button>

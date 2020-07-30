@@ -50,10 +50,10 @@ class admin extends Controller
       $reserve->end_time =$request-> input('end_time');
       $reserve->price =$request-> input('price');
       $reserve->capacity =$request-> input('capacity');
-      $city=city::all();
+    
   $reserve->save();
-  $all =train::all();
-  return view("train\all")->with('a',$all)->with('city',$city);
+
+  return redirect()->back();
         //
     }
 
@@ -113,7 +113,7 @@ class admin extends Controller
      
         $train= train::find($id)->delete();
 
-        $all =train::all();
-  return view("train\all")->with('a', $all)->with("city",$city);
+        $a =train::all();
+        return redirect()->back();
     }
 }

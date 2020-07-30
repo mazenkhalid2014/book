@@ -14,7 +14,7 @@
 
 <div class="card-body">
 <div class="alert-danger">
-    <strong>failed!</strong> Indicates a failed
+    <strong>{{$e}}<strong> 
 </div>
   </div>
 @endsection()

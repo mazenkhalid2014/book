@@ -7,6 +7,7 @@ use App\Mail\mail as Mail1;
 use App\reserve;
 use App\train;
 use App\User;
+use Exception;
 use Mailgun\Mailgun;
 use Illuminate\Http\Request;
 use Illuminate\Mail\MailManager;
@@ -15,6 +16,9 @@ use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 use Symfony\Component\VarDumper\Cloner\Data;
+use Throwable;
+
+use function GuzzleHttp\Promise\exception_for;
 
 class reservecontroller extends Controller
 {
@@ -37,19 +41,10 @@ class reservecontroller extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create($id,Request $request)
-    {
-        $validator = $request->validate([
-              
-            'name'      => 'required|text',
-            'start_time'    => 'required|date after:yesterday',
-            'end_time'      => 'required|date|after:start_time',
-            'capacity'      => 'required|int',
-            'price'      => 'required|int' ,
-            'start_station'    => 'required|different:end_station',
-            'end_station'    => 'required|different:start_station'
-        ],);
+    { 
+    try {
+        if (Auth::check() ){
        $res=train::find($id);
-       $train_id=$res->tr;
         $train_name=$res->name;
         $start_station=$res->start_station;
         $end_station=$res->end_station;
@@ -75,10 +70,16 @@ class reservecontroller extends Controller
    
         train::where('id',$id)->update(['capacity'=>"$cap"]);
                 Mail::to($request->user()->email)->send(new mail1());
-                return view("train/created");
-                }
-            }
-
+                return view('train\created');
+        }else{
+            return view("auth/login");
+        }
+        }}
+        catch (Throwable $e) {
+         
+            return view('train\failed')->with('e',$e);
+        }
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -97,7 +98,7 @@ class reservecontroller extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request)
-    {
+    {   if (Auth::check() ){
        
         $validator = $request->validate([
     
@@ -108,13 +109,14 @@ class reservecontroller extends Controller
         $from=$request->from;
         $to=$request->to;
         $date=$request->date;
-        $data = train::where( 'start_station',$from)->where('end_station',$to)->where('start_time',$date)->get();
+        $data = train::where( 'start_station',$from)->where('end_station',$to)->orwhere('start_time','like',$date)->get();
 
- return view("train/select")
- ->with('data',$data);
+            return view("train/select")->with('data',$data);
 
 
-    }
+    }else{
+        return view("auth/login");
+    }}
     public function trip( Request $request)
     {
         $id = Auth::user()->id;
