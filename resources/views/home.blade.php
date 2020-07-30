@@ -14,11 +14,25 @@
                         </div>
                     @endif
 
-                 
-               
-                    <a href="/inquire?">inqurie </a>
-                    <dir></dir>
-                    <a href="/trip?">my trips </a>
+             
+                    <div class="card" style="width:400px">
+                        <img class="card-img-top" src="img/1" alt="Card image">
+                        <div class="card-body">
+                          <h4 class="card-title"> Reserve</h4>
+                          <p class="card-text">Some example text.</p>
+                          <a href="/inquire?" class="btn btn-primary">Search</a>
+                        </div>
+                      </div>
+                   
+                      <div class="card" style="width:400px">
+                        <img class="card-img-top" src="img_avatar1.png" alt="Card image">
+                        <div class="card-body">
+                          <h4 class="card-title">My Trips </h4>
+                          <p class="card-text">Some example text.</p>
+                          <a href="/trip?" class="btn btn-primary">See Histoy</a>
+                        </div>
+                      </div>
+                  
                 </div>
 
             </div>

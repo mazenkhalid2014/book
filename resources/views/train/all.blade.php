@@ -110,21 +110,6 @@
               </table>
                 </body>
                 </html>
-                {{-- @foreach($all as $train)
-    
-        <div class="card-body">
-        <br> Name :  {{$train->name}}</br>
-         <br>Start station :  {{$train->start_station}}</br>
-            <br> End station : {{$train->end_station}}</br>
-         <br>   start time : {{$train->start_time}} </br>
-          <br>  End time: {{$train->end_time}} </br>
-     <br> Price : {{$train->price}} </br>
-        <br>  capacity :{{$train->capacity}} </br>
-        <a href="/delete/{{$train->id}} "><button >delete</buttom></a>
-
-              @endforeach
-           
-             --}}
             
             
             

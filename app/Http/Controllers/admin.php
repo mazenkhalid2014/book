@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\city;
 use App\train;
 use Illuminate\Http\Request;
+use Throwable;
 
 class admin extends Controller
 {
@@ -109,11 +110,17 @@ class admin extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    { $city=city::all();
+
+    { try{
+         $city=city::all();
      
         $train= train::find($id)->delete();
 
         $a =train::all();
         return redirect()->back();
     }
+       catch (Throwable $e){
+        return view ("train/falied")->with("e",$e);
+    }
+}
 }

@@ -16,7 +16,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+            
                 <div class="card-header">{{ __('Reservation') }}</div>
+             
                 <table class="table table-borderless">
                     <div class="card-body">
                     <thead>
@@ -44,38 +46,19 @@
                         <td>{{$train->price}}</td>
                         <td>{{$train->capacity}}</td>
                         <td>{{$train->created_at}}</td>
-                        <td>  <a href="/show/{{$train->id}} "><button >reserve</buttom></a></td>
+                        <td>  <a href="/show/{{$train->id}} "><button >Reserve</buttom></a></td>
                       @endforeach
                     </tbody>
                        
                   </tr>  
-               
-                 
+              
                 </div>
               </table>
             
                 </body>
                 </html>
             </div>
-                {{-- @foreach($data as $train)
-       
-   
-     <br> Name :  {{$train->name}}</br>
-     <br>Start station :  {{$train->start_station}}</br>
-     <br> End station : {{$train->end_station}}</br>
-     <br>   start time : {{$train->start_time}} </br>
-   <br>  End time: {{$train->end_time}} </br>
-    <br> Price : {{$train->price}} </br>
-    <br>  capacity :{{$train->capacity}} </br>
-    <a href="/show/{{$train->id}} "><button >reserve</buttom></a>
-
-              @endforeach
-        
-          
-         
-            
-        </div>
-         --}}
+           
     
     </div>
     

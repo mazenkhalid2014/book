@@ -11,10 +11,13 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 @section('content')
-
+<div class="container-md">
+<div class="card-subtitle"><a>Errors:</a></div>
+</div>
 <div class="card-body">
 <div class="alert-danger">
     <strong>{{$e}}<strong> 
 </div>
   </div>
+
 @endsection()

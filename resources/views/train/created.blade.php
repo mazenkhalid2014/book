@@ -17,4 +17,5 @@
     <strong>Success!</strong> please check the in spam......
     
   </div>
+  
 @endsection()

@@ -116,15 +116,15 @@ class reservecontroller extends Controller
 
     }else{
         return view("auth/login");
-    }}
+         }
+        }
     public function trip( Request $request)
-    {
+    {  
         $id = Auth::user()->id;
 
         $data = reserve::where('user_id',$id)->get();
           
- return view("train/trip")
- ->with('data',$data);
+       return view("train/trip")->with('data',$data);
 
 
     }
