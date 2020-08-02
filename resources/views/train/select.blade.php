@@ -9,7 +9,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
 <!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.css"/>
+ 
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.js"></script>
 @section('content')
 <div class="container">
   
@@ -18,8 +20,8 @@
             <div class="card">
             
                 <div class="card-header">{{ __('Reservation') }}</div>
-             
-                <table class="table table-borderless">
+                <input class="form-control" id="myInput" type="text" placeholder="Search..">
+                <table class="table table-borderless" id="table">
                     <div class="card-body">
                     <thead>
                       <tr>
@@ -33,7 +35,7 @@
                         <th>created at</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="myTable">
             
                       @foreach($data as $train)
                       <tr>
@@ -49,15 +51,17 @@
                         <td>  <a href="/show/{{$train->id}} "><button >Reserve</buttom></a></td>
                       @endforeach
                     </tbody>
-                       
-                  </tr>  
-              
-                </div>
-              </table>
-            
-                </body>
-                </html>
-            </div>
+                    <script>
+                      $(document).ready(function(){
+                        $("#myInput").on("keyup", function() {
+                          var value = $(this).val().toLowerCase();
+                          $("#myTable tr").filter(function() {
+                            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                          });
+                        });
+                      });
+                      
+                      </script>
            
     
     </div>

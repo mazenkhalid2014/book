@@ -53,7 +53,7 @@ class admin extends Controller
       $reserve->capacity =$request-> input('capacity');
     
   $reserve->save();
-
+train::all();
   return redirect()->back();
         //
     }
