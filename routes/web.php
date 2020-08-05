@@ -31,3 +31,10 @@ Route::get('/trip', 'reservecontroller@trip')->name('trip');
 Route::get('/admin', 'admin@index')->name('admin');
 Route::get('/create', 'admin@create')->name('create');
 Route::get('/delete/{id}', 'admin@destroy')->name('delete');
+
+Route::get('/usersconfig', 'userconfig@index')->name('users');
+Route::get('/add_user', 'userconfig@create')->name('add');
+Route::get('/ch_role/{id}', 'userconfig@update')->name('ch_role');
+Route::get('/delete_user/{id}', 'userconfig@destroy')->name('delete_user');
+Route::get('/edit_user/{id}', 'userconfig@show')->name('edit');
+Route::get('/update_user', 'userconfig@edit')->name('update');

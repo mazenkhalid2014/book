@@ -109,11 +109,10 @@ class reservecontroller extends Controller
         $from=$request->from;
         $to=$request->to;
         $date=$request->date;
-        $data = train::where( 'start_station',$from)->where('end_station',$to)->orwhere('start_time','like',$date)->get();
-
+        $data = train::where( 'start_station',$from)->where('end_station',$to)->where('start_time',$date)->get();
+         
             return view("train/select")->with('data',$data);
-
-
+          
     }else{
         return view("auth/login");
          }

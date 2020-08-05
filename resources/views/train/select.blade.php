@@ -21,6 +21,7 @@
             
                 <div class="card-header">{{ __('Reservation') }}</div>
                 <input class="form-control" id="myInput" type="text" placeholder="Search..">
+              
                 <table class="table table-borderless" id="table">
                     <div class="card-body">
                     <thead>
@@ -36,10 +37,11 @@
                       </tr>
                     </thead>
                     <tbody id="myTable">
-            
+        
                       @foreach($data as $train)
                       <tr>
-                       
+                     
+                        <div class="card-body">
                         <td>{{$train->name}}</td>
                         <td>{{$train->start_station}}</td>
                         <td>{{$train->end_station}}</td>
@@ -49,7 +51,9 @@
                         <td>{{$train->capacity}}</td>
                         <td>{{$train->created_at}}</td>
                         <td>  <a href="/show/{{$train->id}} "><button >Reserve</buttom></a></td>
+                        </div>
                       @endforeach
+                    
                     </tbody>
                     <script>
                       $(document).ready(function(){

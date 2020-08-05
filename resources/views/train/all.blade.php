@@ -90,7 +90,7 @@
                         <td>  <a href="/create/{{$a}} "></a></td>
                       @foreach($a as $train)
                       <tr>
-                       
+                        <div class="card-body">
                         <td>{{$train->name}}</td>
                         <td>{{$train->start_station}}</td>
                         <td>{{$train->end_station}}</td>
@@ -100,6 +100,7 @@
                         <td>{{$train->capacity}}</td>
                         <td>{{$train->created_at}}</td>
                         <td>  <a href="/delete/{{$train->id}} "><button >delete</buttom></a></td>
+                        </div>
                       @endforeach
                     </tbody>
                        

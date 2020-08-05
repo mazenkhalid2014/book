@@ -52,9 +52,9 @@ class admin extends Controller
       $reserve->price =$request-> input('price');
       $reserve->capacity =$request-> input('capacity');
     
-  $reserve->save();
-train::all();
-  return redirect()->back();
+    $reserve->save();
+        train::all();
+    return redirect()->back();
         //
     }
 
